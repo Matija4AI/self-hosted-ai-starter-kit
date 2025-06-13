@@ -8,8 +8,6 @@ Curated by <https://github.com/n8n-io>, it combines the self-hosted n8n
 platform with a curated list of compatible AI products and components to
 quickly get started with building self-hosted AI workflows.
 
-> [!TIP]
-> [Read the announcement](https://blog.n8n.io/self-hosted-ai/)
 
 ### What’s included
 
@@ -24,6 +22,8 @@ store with an comprehensive API
 
 ✅ [**PostgreSQL**](https://www.postgresql.org/) -  Workhorse of the Data
 Engineering world, handles large amounts of data safely.
+
+✅ [**Open WebUI**](https://openwebui.com/) - ChatBot interface for easier interaction with Ollama and N8N agents
 
 ### What you can build
 
@@ -40,7 +40,7 @@ Engineering world, handles large amounts of data safely.
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+git clone https://github.com/Matija4AI/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 ```
 
@@ -49,7 +49,7 @@ cd self-hosted-ai-starter-kit
 #### For Nvidia GPU users
 
 ```
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+git clone https://github.com/Matija4AI/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 docker compose --profile gpu-nvidia up
 ```
@@ -61,7 +61,7 @@ docker compose --profile gpu-nvidia up
 ### For AMD GPU users on Linux
 
 ```
-git clone https://github.com/n8n-io/self-hosted-ai-starter-kit.git
+git clone https://github.com/Matija4AI/self-hosted-ai-starter-kit.git
 cd self-hosted-ai-starter-kit
 docker compose --profile gpu-amd up
 ```
