@@ -10,7 +10,6 @@ networks:
 
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
-  networks: ['demo']
   environment:
     - DB_TYPE=postgresdb
     - DB_POSTGRESDB_HOST=postgres
@@ -26,10 +25,9 @@ x-n8n: &service-n8n
 x-ollama: &service-ollama
   image: ollama/ollama:latest
   container_name: ollama
-  networks: ['demo']
   restart: unless-stopped
-  expose:
-    - 11434/tcp
+  ports:
+    - 11434:11434
   environment:
     - OLLAMA_CONTEXT_LENGTH=8192
     - OLLAMA_FLASH_ATTENTION=1
@@ -40,7 +38,6 @@ x-ollama: &service-ollama
 
 x-init-ollama: &init-ollama
   image: ollama/ollama:latest
-  networks: ['demo']
   container_name: ollama-pull-llama
   volumes:
     - ollama_storage:/root/.ollama
@@ -54,11 +51,10 @@ x-init-ollama: &init-ollama
 services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
-    networks: ['demo']
     restart: unless-stopped
     container_name: open-webui
-    expose:
-      - 8080/tcp
+    ports:
+      - 8080:8080
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
@@ -67,7 +63,6 @@ services:
   postgres:
     image: postgres:16-alpine
     hostname: postgres
-    networks: ['demo']
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
@@ -80,8 +75,8 @@ services:
       interval: 3s
       timeout: 3s
       retries: 10
-    expose:
-      - 5432/tcp
+    ports:
+      - 5432:5432
 
   n8n-import:
     <<: *service-n8n
@@ -99,8 +94,8 @@ services:
     hostname: n8n
     container_name: n8n
     restart: unless-stopped
-    expose:
-      - 5678/tcp
+    ports:
+      - 5678:5678
     volumes:
       - n8n_storage:/home/node/.n8n
       - ./n8n/backup:/backup
@@ -113,11 +108,11 @@ services:
     image: qdrant/qdrant
     hostname: qdrant
     container_name: qdrant
-    networks: ['demo']
+    
     restart: unless-stopped
-    expose:
-      - 6333:tcp
-      - 6334:tcp
+    ports:
+      - 6333:6333
+      - 6334:6334
     volumes:
       - qdrant_storage:/qdrant/storage
 
